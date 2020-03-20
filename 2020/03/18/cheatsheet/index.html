@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Austin Yu">
+
+
+
+    <meta name="description" content="v.01">
+
+
+
+<title>Cheatsheet | austinyu&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">austinyu&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">austinyu&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Cheatsheet</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Austin Yu</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 18, 2020&nbsp;&nbsp;11:16:59</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/academic/">academic</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>这是一篇我大一学习的 CSC-151 的笔记。这门课学的是sheme语言，我觉得这门语言其实并没有什么实质性的用处，但是学个思想还是有用的。我学这门语言最大的障碍其实是没有一个很好用的 cheatsheet，所以我决定用春假的时间写一个我个人比较有帮助的 cheatsheet。 </p>
+<h1 id="Data-Types"><a href="#Data-Types" class="headerlink" title="Data Types"></a>Data Types</h1><ul>
+<li><p>Check properties</p>
+<ul>
+<li><pre><code class="scheme">&gt; (integer? 2)
+#t
+&gt; (real? 2)
+#t
+&gt; (integer? 2.5)
+#f
+&gt; (exact? 2)
+#t 
+&gt; (inexact-&gt;exact 2.0)
+<span class="number">2</span>
+&gt; (list? (list 1 2 3))
+#t
+&gt; (null? 5)
+#f
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Conversions </span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (exact-&gt;inexact (&#x2F; (+ 5 3 2 4 3 5) 6))</span><br><span class="line">    3.6666666666666665</span><br><span class="line">    &gt; (numerator 5&#x2F;7)</span><br><span class="line">    5</span><br><span class="line">    &gt; (denominator 5&#x2F;7)</span><br><span class="line">    7</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Computation</p>
+<ul>
+<li><pre><code class="scheme">&gt; (quotient 13 4)
+<span class="number">3</span>
+&gt; (remainder 13 4)
+1s
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Comparison</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (&lt; 2 3 4)</span><br><span class="line">    #t</span><br><span class="line">    &gt; (&lt; 2 3 1)</span><br><span class="line">    #f</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Symbols </p>
+<ul>
+<li><pre><code class="scheme"><span class="comment">; create symbols</span>
+&gt; (quote sample)
+<span class="symbol">'sample</span>
+&gt; 'sample
+<span class="symbol">'sample</span>
+
+<span class="comment">; check symbols</span>
+&gt; (symbol? 'sample)
+#t
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Strings</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (equal? &#39;jam &quot;jam&quot;)</span><br><span class="line">    #f</span><br><span class="line">    &gt; (string-ref &quot;jam&quot; 1)</span><br><span class="line">    #\a</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Simple-Lits"><a href="#Simple-Lits" class="headerlink" title="Simple Lits"></a>Simple Lits</h1><ul>
+<li><p>Creating new list</p>
+<ul>
+<li><pre><code class="scheme">&gt; (list 1 2 3 "z")
+'(<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="string">"z"</span>)
+&gt; '(1 2 3 "z")
+'(<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="string">"z"</span>)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Map </span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (map ceiling (map square (map sqrt (list 1 2 3 4 5 6 7 8 9 10))))</span><br><span class="line">    &#39;(1 3.0 3.0 4 6.0 6.0 8.0 9.0 9 11.0)</span><br><span class="line">    </span><br><span class="line">    ; operation composition</span><br><span class="line">    &gt; (map (o inexact-&gt;exact ceiling square sqrt) (list 1 2 3 4 5 6 7 8 9 10))</span><br><span class="line">    &#39;(1 3 3 4 6 6 8 9 9 11)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>iota</p>
+<ul>
+<li><pre><code class="scheme">&gt; (iota 10)
+'(<span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span>)
+&gt; (map increment (iota 10))
+'(<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span> <span class="number">8</span> <span class="number">9</span> <span class="number">10</span>)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Operations on a list</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    ; length of list</span><br><span class="line">    &gt; (length (make-list 5 &quot;hello&quot;))</span><br><span class="line">    5</span><br><span class="line">    </span><br><span class="line">    ; combining elements in list</span><br><span class="line">    &gt; (reduce + (list 4 1 6 3 2 10 5))</span><br><span class="line">    31</span><br><span class="line">    &gt; (reduce max (list 4 1 6 3 2 10 5))</span><br><span class="line">    10</span><br><span class="line">    </span><br><span class="line">    ; reduce with direction</span><br><span class="line">    &gt; (reduce-left - (list 4 1 6 3 2 10 5))</span><br><span class="line">    -23</span><br><span class="line">    &gt; (reduce-right - (list 4 1 6 3 2 10 5))</span><br><span class="line">    3</span><br><span class="line">    </span><br><span class="line">    ; map two lists</span><br><span class="line">    (map * (list 1 2 3) (list 4 5 6))</span><br><span class="line">    &#39;(4 10 18) ; That&#39;s 1*4, 2*5, and 3*6</span><br><span class="line">    </span><br><span class="line">    ; sorting</span><br><span class="line">    &gt; (sort (list 5 1 4 2 3) &lt;)</span><br><span class="line">    &#39;(1 2 3 4 5)</span><br><span class="line">    &gt; (sort (list &quot;Computers&quot; &quot;are&quot; &quot;sentient&quot; &quot;and&quot; &quot;malicious&quot;) string-ci&lt;?)</span><br><span class="line">    &#39;(&quot;and&quot; &quot;are&quot; &quot;Computers&quot; &quot;malicious&quot; &quot;sentient&quot;)</span><br><span class="line">    </span><br><span class="line">    &gt; (reverse (iota 10))</span><br><span class="line">    &#39;(9 8 7 6 5 4 3 2 1 0)</span><br><span class="line">    &gt; (append (iota 5) (iota 5))</span><br><span class="line">    &#39;(0 1 2 3 4 0 1 2 3 4)</span><br><span class="line">    </span><br><span class="line">    ; take and drop</span><br><span class="line">    &gt; (take (reverse (iota 10)) 7)</span><br><span class="line">    &#39;(9 8 7 6 5 4 3)</span><br><span class="line">    &gt; (drop (iota 10) 3)</span><br><span class="line">    &#39;(3 4 5 6 7 8 9)</span><br><span class="line">    </span><br><span class="line">    &gt; observation</span><br><span class="line">    &#39;(&quot;Computers&quot; &quot;are&quot; &quot;sentient&quot; &quot;and&quot; &quot;malicious&quot;)</span><br><span class="line">    &gt; (index-of &quot;sentient&quot; observation)</span><br><span class="line">    2</span><br><span class="line">    &gt; (index-of &quot;wicked neat&quot; observation)</span><br><span class="line">    -1</span><br><span class="line">    &gt; (list-ref observation 1)</span><br><span class="line">    &quot;are&quot;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Defining-procedures"><a href="#Defining-procedures" class="headerlink" title="Defining procedures"></a>Defining procedures</h1><ul>
+<li><p>definitions</p>
+<ul>
+<li><pre><code class="scheme"><span class="comment">; define variables</span>
+(<span class="name"><span class="builtin-name">define</span></span> five <span class="number">5</span>)
+
+<span class="comment">; define procedures with section</span>
+(<span class="name"><span class="builtin-name">define</span></span> half (<span class="name">section</span> / &lt;&gt; <span class="number">2</span>))
+
+<span class="comment">; define procedures with lambda </span>
+(<span class="name"><span class="builtin-name">define</span></span> average
+  (<span class="name"><span class="builtin-name">lambda</span></span> (numbers)
+    (<span class="name"><span class="builtin-name">/</span></span> (<span class="name">reduce</span> + numbers)
+       (<span class="name"><span class="builtin-name">length</span></span> numbers))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Documentation</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;scheme</span><br><span class="line">;;; Procedure:</span><br><span class="line">;;;   square</span><br><span class="line">;;; Parameters:</span><br><span class="line">;;;   val, an integer</span><br><span class="line">;;; Purpose:</span><br><span class="line">;;;   Computes the square of val.</span><br><span class="line">;;; Produces:</span><br><span class="line">;;;;  result, an integer</span><br><span class="line">;;; Preconditions:</span><br><span class="line">;;;   [No additional]</span><br><span class="line">;;; Postconditions:</span><br><span class="line">;;;   (sqrt result) is val</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h1><ul>
+<li><p>definition </p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> test-remove-negatives
+  (<span class="name">test-suite</span>
+   <span class="string">"Tests of remove-negatives"</span>
+   (<span class="name">test-case</span>
+    <span class="string">"small lists"</span>
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span>)) 
+                  (<span class="name"><span class="builtin-name">list</span></span>)
+                  <span class="string">"empty list"</span>)
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">3</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span> <span class="number">3</span>)
+                  <span class="string">"singleton list - positive"</span>)
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">0</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span> <span class="number">0</span>)
+                  <span class="string">"singleton list - zero"</span>)
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> - <span class="number">1</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span>)
+                  <span class="string">"singleton list - negative"</span>))
+   (<span class="name">test-case</span>
+    <span class="string">"all positive"</span>
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">3</span> <span class="number">7</span> <span class="number">11</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span> <span class="number">3</span> <span class="number">7</span> <span class="number">11</span>)
+                  <span class="string">"three elements"</span>))
+   (<span class="name">test-case</span>
+    <span class="string">"mixed"</span>
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">-1</span> <span class="number">3</span> <span class="number">7</span> <span class="number">11</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span> <span class="number">3</span> <span class="number">7</span> <span class="number">11</span>)
+                  <span class="string">"negative at front of list"</span>)
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">-1</span> <span class="number">3</span> <span class="number">-2</span> <span class="number">7</span> <span class="number">-3</span> <span class="number">11</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span> <span class="number">3</span> <span class="number">7</span> <span class="number">11</span>)
+                  <span class="string">"alternating"</span>)
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">-1</span> <span class="number">-2</span> <span class="number">-3</span> <span class="number">1</span> <span class="number">-2</span> <span class="number">-3</span> <span class="number">2</span> <span class="number">-3</span> <span class="number">-4</span> <span class="number">5</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span> <span class="number">5</span>)
+                  <span class="string">"sequences of negatives"</span>))
+   (<span class="name">test-case</span>
+    <span class="string">"all negative"</span>
+    (<span class="name">check-equal?</span> (<span class="name">remove-negatives</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">-1</span> <span class="number">-2</span> <span class="number">-3</span>))
+                  (<span class="name"><span class="builtin-name">list</span></span>)
+                  <span class="string">"boring"</span>))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- run tests</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (run-tests test-remove-negatives)</span><br><span class="line">    --------------------</span><br><span class="line">    Tests of remove-negatives &gt; small lists</span><br><span class="line">    small lists</span><br><span class="line">    ERROR</span><br><span class="line">    . . negative?: contract violation</span><br><span class="line">      expected: real?</span><br><span class="line">      given: #&lt;procedure:-&gt;</span><br><span class="line">    </span><br><span class="line">    --------------------</span><br><span class="line">    3 success(es) 0 failure(s) 1 error(s) 4 test(s) run</span><br><span class="line">    1</span><br><span class="line">    </span><br><span class="line">    &gt; (run-tests test-remove-negatives)</span><br><span class="line">    4 success(es) 0 failure(s) 0 error(s) 4 test(s) run</span><br><span class="line">    0</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Advanced-Lists"><a href="#Advanced-Lists" class="headerlink" title="Advanced Lists"></a>Advanced Lists</h1><ul>
+<li><p>taking elements </p>
+<blockquote>
+<p>Scheme also provides two other operations to extract values from lists: <code>car</code> extracts the first element (element zero) and <code>cdr</code> returns a list containing all but the first element.</p>
+</blockquote>
+<p>​    </p>
+<ul>
+<li><pre><code class="scheme">&gt; (car '(2 3 4 5))
+<span class="number">2</span>
+&gt; (cdr '(2 3 4 5))
+'(<span class="number">3</span> <span class="number">4</span> <span class="number">5</span>)
+&gt; (list-ref '(2 3 4 5 6) 2)
+<span class="number">4</span>
+
+&gt; (define rainbow (list "red" "orange" "yellow" "green" "blue" "indigo" "violet"))
+&gt; (cadr rainbow)
+<span class="string">"orange"</span>
+&gt; (cddr rainbow)
+'(<span class="string">"yellow"</span> <span class="string">"green"</span> <span class="string">"blue"</span> <span class="string">"indigo"</span> <span class="string">"violet"</span>)
+&gt; (caddr rainbow)
+<span class="string">"yellow"</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Combining Lists</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (cons &quot;2&quot; &#39;(&#39;2 &quot;5&quot; 56 7))</span><br><span class="line">    &#39;(&quot;2&quot; &#39;2 &quot;5&quot; 56 7)</span><br><span class="line">    &gt; (append &#39;(2 3 4) &#39;(6 7 8))</span><br><span class="line">    &#39;(2 3 4 6 7 8) </span><br><span class="line">    &gt; (append &#39;(2 3 4) &#39;(2))</span><br><span class="line">    &#39;(2 3 4 2)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Null list</p>
+<ul>
+<li><pre><code class="scheme">&gt; '()
+'()
+&gt; nil
+'()
+&gt; null
+'()
+&gt; (list)
+'()
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Table</span><br><span class="line"></span><br><span class="line">- List reference: &#96;&#39;(&quot;Iowa&quot; &quot;Des Moines&quot; 41.590939 -93.620866)&#96;</span><br><span class="line"></span><br><span class="line">- filtering</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (define city-city&lt;?</span><br><span class="line">      (lambda (city1 city2)</span><br><span class="line">        (string-ci&lt;? (cadr city1) (cadr city2))))</span><br><span class="line">        </span><br><span class="line">    &gt; (sort capitals city-city&lt;?)</span><br><span class="line">    </span><br><span class="line">    &gt; (take (sort capitals (lambda (city1 city2) (&lt; (cadddr city1) (cadddr city2)))) 5)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Tallying</p>
+<ul>
+<li><pre><code class="scheme">&gt; (tally-all (list 'a 'b 'a 'c 'c 'd 'b 'a 'q 'r 'r 'a 'd))
+'((a <span class="number">4</span>) (b <span class="number">2</span>) (c <span class="number">2</span>) (d <span class="number">2</span>) (q <span class="number">1</span>) (r <span class="number">2</span>))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Reading Files</span><br><span class="line"></span><br><span class="line">- csv</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (read-csv-file &quot;path&quot;)</span><br><span class="line">    &gt; (take (file-&gt;chars &quot;&#x2F;home&#x2F;rebelsky&#x2F;share&#x2F;text&#x2F;csc151-textfile-procs.txt&quot;) 20)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>assoc</p>
+<blockquote>
+<p>Given a key and association list, <code>assoc</code> returns the first entry with the given key. If the key does not occur in the association list, then <code>assoc</code> returns <code>#f</code>. For example, if we had a directory:</p>
+</blockquote>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> grinnell-directory
+  (<span class="name"><span class="builtin-name">list</span></span>
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Rebelsky"</span> <span class="string">"Samuel"</span> <span class="string">"messy-office"</span> <span class="string">"4410"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Klinge"</span> <span class="string">"Titus"</span> <span class="string">"cauldron"</span> <span class="string">"3271"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Weinman"</span> <span class="string">"Jerod"</span> <span class="string">"map-reader"</span> <span class="string">"9812"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Osera"</span> <span class="string">"PM"</span> <span class="string">"type-snob"</span> <span class="string">"4010"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Curtsinger"</span> <span class="string">"Charlie"</span> <span class="string">"systems-guy"</span> <span class="string">"3127"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Vostinar"</span> <span class="string">"Anya"</span> <span class="string">"cache"</span> <span class="string">"4306"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Dahlby-Albright"</span> <span class="string">"Sarah"</span> <span class="string">"cheery-coach"</span> <span class="string">"4362"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Rodrigues"</span> <span class="string">"Liz"</span> <span class="string">"vivero"</span> <span class="string">"3362"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Barks"</span> <span class="string">"Sarah"</span> <span class="string">"stem-careers"</span> <span class="string">"4940"</span>)
+    (<span class="name"><span class="builtin-name">list</span></span> <span class="string">"Kington"</span> <span class="string">"Raynard"</span> <span class="string">"the-prez"</span> <span class="string">"3000"</span>)))
+
+&gt; (assoc "Barks" grinnell-directory)
+'(<span class="string">"Barks"</span> <span class="string">"Sarah"</span> <span class="string">"stem-careers"</span> <span class="string">"4940"</span>)
+&gt; (assoc "Reisch" grinnell-directory)
+#f
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Boolean and predicate</span><br><span class="line"></span><br><span class="line">- Predicates</span><br><span class="line">  - numeric</span><br><span class="line">    - &#96;even?&#96; tests whether its argument, which must be an integer, is even.</span><br><span class="line">    - &#96;odd?&#96; tests whether its argument, which must be an integer, is odd.</span><br><span class="line">    - &#96;zero?&#96; tests whether its argument, which must be a number, is equal to zero.</span><br><span class="line">    - &#96;positive?&#96; tests whether its argument, which must be a real number, is positive.</span><br><span class="line">    - &#96;negative?&#96; tests whether its argument, which must be a real number, is negative.</span><br><span class="line">    - &#96;exact?&#96; tests whether its argument, which must be a number, is represented exactly.</span><br><span class="line">    - &#96;inexact?&#96; tests whether its argument, which must be a number, is not represented exactly.</span><br><span class="line">  - type</span><br><span class="line">    - &#96;number?&#96; tests whether its argument is a number.</span><br><span class="line">    - &#96;integer?&#96; tests whether its argument is an integer.</span><br><span class="line">    - &#96;real?&#96; tests whether its argument is a real number.</span><br><span class="line">    - &#96;string?&#96; tests whether its argument is a string.</span><br><span class="line">    - &#96;procedure?&#96; tests whether its argument is a procedure.</span><br><span class="line">    - &#96;boolean?&#96; tests whether its argument is a Boolean value.</span><br><span class="line">    - &#96;list?&#96; tests whether its argument is a list.</span><br><span class="line">  - Equality: &#96;equal?&#96;</span><br><span class="line">  - numerical Comparison </span><br><span class="line">    - &#96;&lt;&#96; tests whether its arguments, which must all be numbers, are in strictly ascending numerical order. (The &#96;&lt;&#96; operation is one of the few built-in predicates that does not have an accompanying question mark.)</span><br><span class="line">    - &#96;&gt;&#96; tests whether its arguments, which must all be numbers, are in strictly descending numerical order.</span><br><span class="line">    - &#96;&lt;&#x3D;&#96; tests whether its arguments, which must all be numbers, are in ascending numerical order, allowing equality.</span><br><span class="line">    - &#96;&gt;&#x3D;&#96; tests whether its arguments, which must all be numbers, are in descending numerical order, allowing equality.</span><br><span class="line">  - other comparison </span><br><span class="line">    - &#96;char&lt;?&#96; tests whether itss arguments, which must all be characters, are in strictly ascending alphabetical order.</span><br><span class="line">    - &#96;char&lt;&#x3D;?&#96; tests whether its arguments, which must all be characters, are in ascending alphabetical order.</span><br><span class="line">    - &#96;char&gt;?&#96; tests whether its arguments, which must all be characters, are in strictly descending alphabetical order.</span><br><span class="line">    - &#96;char&gt;&#x3D;?&#96; tests whether its arguments, which must all be characters, are in descending alphabetical order.</span><br><span class="line">    - &#96;char-ci&lt;?&#96; tests whether itss arguments, which must all be characters, are in strictly ascending alphabetical order, ignoring case.</span><br><span class="line">    - &#96;char-ci&lt;&#x3D;?&#96; tests whether its arguments, which must all be characters, are in ascending alphabetical order, ignoring case.</span><br><span class="line">    - &#96;char-ci&gt;?&#96; tests whether its arguments, which must all be characters, are in strictly descending alphabetical order, ignoring case.</span><br><span class="line">    - &#96;char-ci&gt;&#x3D;?&#96; tests whether its arguments, which must all be characters, are in descending alphabetical order, ignoring case.</span><br><span class="line">    - &#96;string&lt;?&#96; tests whether its arguments, which must all be strings, are in strictly ascending alphabetical order.</span><br><span class="line">    - &#96;string&lt;&#x3D;?&#96; tests whether its arguments, which must all be strings, are in ascending alphabetical order.</span><br><span class="line">    - &#96;string&gt;?&#96; tests whether its arguments, which must all be strings, are in strictly descending alphabetical order.</span><br><span class="line">    - &#96;string&gt;&#x3D;?&#96; tests whether its arguments, which must all be strings, are in descending alphabetical order.</span><br><span class="line">    - &#96;string-ci&lt;?&#96; tests whether its arguments, which must all be strings, are in strictly ascending alphabetical order, but ignoring case.</span><br><span class="line">    - &#96;string-ci&lt;&#x3D;?&#96; tests whether its arguments, which must all be strings, are in ascending alphabetical order, but ignoring case.</span><br><span class="line">    - &#96;string-ci&gt;?&#96; tests whether its arguments, which must all be strings, are in strictly descending alphabetical order, but ignoring case.</span><br><span class="line">    - &#96;string-ci&gt;&#x3D;?&#96; tests whether its arguments, which must all be strings, are in descending alphabetical order, but ignoring case.</span><br><span class="line">  - Negation &#96;(not (image? picture))&#96;</span><br><span class="line">- Combining </span><br><span class="line">  - and or </span><br><span class="line"></span><br><span class="line"># Filter</span><br><span class="line"></span><br><span class="line">- examples</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (define stuff (list -5 10 18 23 14.0 87 1&#x2F;2 0.5 -12.2))</span><br><span class="line">    &gt; stuff</span><br><span class="line">    &#39;(-5 10 18 23 14.0 87 1&#x2F;2 0.5 -12.2)</span><br><span class="line">    &gt; (filter inexact? stuff)</span><br><span class="line">    &#39;(14.0 0.5 -12.2)</span><br><span class="line">    &gt; (filter negative? stuff)</span><br><span class="line">    &#39;(-5 -12.2)</span><br><span class="line">    &gt; (filter integer? stuff)</span><br><span class="line">    &#39;(-5 10 18 23 14.0 87)</span><br><span class="line">    &gt; (filter (section &lt;&#x3D; 0 &lt;&gt; 10) stuff)</span><br><span class="line">    &#39;(10 1&#x2F;2 0.5)</span><br><span class="line">    </span><br><span class="line">    &gt; (filter (conjoin integer? exact?) (list 1 1&#x2F;2 3.4 4 &quot;two&quot; &#39;three 8.0))</span><br><span class="line">    &#39;(1 4)</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Local-Bindings"><a href="#Local-Bindings" class="headerlink" title="Local Bindings"></a>Local Bindings</h1><ul>
+<li><p>let </p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">let</span></span>
+  ([<span class="name">name1</span> exp1]
+   [<span class="name">name2</span> exp2]
+   ...
+   [<span class="name">namen</span> expn])
+  body1
+  body2
+  ...
+  bodym)
+
+(<span class="name"><span class="builtin-name">define</span></span> midwest-central-longitude
+  (<span class="name"><span class="builtin-name">lambda</span></span> (cities)
+    (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">sorted-midwest-cities</span>
+           (<span class="name">sort</span> (<span class="name">filter</span> midwest-state? cities)
+                 (<span class="name"><span class="builtin-name">lambda</span></span> (entry1 entry2)
+                   (<span class="name"><span class="builtin-name">&lt;</span></span> (<span class="name">caddr</span> entry1) (<span class="name">caddr</span> entry2))))])
+      (<span class="name"><span class="builtin-name">*</span></span> <span class="number">1/2</span>
+         (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">caddr</span> (<span class="name"><span class="builtin-name">car</span></span> sorted-midwest-cities))
+            (<span class="name">caddr</span> (<span class="name"><span class="builtin-name">car</span></span> (<span class="name"><span class="builtin-name">reverse</span></span> sorted-midwest-cities))))))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Let* (sequence implementation)</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (let*</span><br><span class="line">      ([name1 exp1]</span><br><span class="line">       [name2 exp2]</span><br><span class="line">       ...</span><br><span class="line">       [namen expn])</span><br><span class="line">      body1</span><br><span class="line">      body2</span><br><span class="line">      ...</span><br><span class="line">      bodym)</span><br><span class="line">    </span><br><span class="line">    ; positioning let and lambda</span><br><span class="line">    (define proc</span><br><span class="line">      (let (...)</span><br><span class="line">        (lambda (params)</span><br><span class="line">          exp)))</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Let procedure</p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> hypotenuse-of-right-triangle
+  (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">square</span> (<span class="name"><span class="builtin-name">lambda</span></span> (n) (<span class="name"><span class="builtin-name">*</span></span> n n))])
+    (<span class="name"><span class="builtin-name">lambda</span></span> (first-leg second-leg)
+      (<span class="name"><span class="builtin-name">sqrt</span></span> (<span class="name"><span class="builtin-name">+</span></span> (<span class="name">square</span> first-leg) (<span class="name">square</span> second-leg))))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Condition</span><br><span class="line"></span><br><span class="line">- if </span><br><span class="line"></span><br><span class="line">  - &#96;(if condition consequent alternative)&#96;</span><br><span class="line"></span><br><span class="line">- cond</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (cond</span><br><span class="line">      [guard-0 </span><br><span class="line">       consequent-0]</span><br><span class="line">      ...</span><br><span class="line">      [guard-n </span><br><span class="line">       consequent-n]</span><br><span class="line">      [else </span><br><span class="line">       alternate])</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Displaying-data"><a href="#Displaying-data" class="headerlink" title="Displaying data"></a>Displaying data</h1><ul>
+<li><p>Scatter plot</p>
+<ul>
+<li><pre><code>; points
+&gt; (plot (list (points (list (list 0 0) (list 10 10) (list 3 5) (list 1 4)
+                            (list 8 2))
+                      #:fill-color &quot;red&quot;
+                      #:sym &apos;fullcircle6
+                      #:x-min -1
+                      #:x-max 11
+                      #:y-min -1
+                      #:y-max 11)
+              (points (list (list 5 10) (list 6 9) (list 8 7))
+                      #:fill-color &quot;black&quot;
+                      #:sym &apos;fullcircle6))
+        #:title &quot;This and That&quot;
+        #:x-label &quot;This&quot;
+        #:y-label &quot;That&quot;)
+
+; line
+&gt; (plot (lines (list (list 0 0) (list 10 10) (list 3 5) (list 1 4)
+                     (list 8 2))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- histograms</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (plot (discrete-histogram (list (list &quot;A&quot; 5) (list &quot;B&quot; 8) (list &quot;C&quot; 3))))</span><br><span class="line">    </span><br><span class="line">    &gt; (plot (stacked-histogram (list (list &quot;A&quot; (list 6 12))</span><br><span class="line">                                     (list &quot;B&quot; (list 5 10 7))</span><br><span class="line">                                     (list &quot;C&quot; (list 15 5)))</span><br><span class="line">                               #:labels (list &quot;This&quot; &quot;That&quot; &quot;Other&quot;)</span><br><span class="line">                               #:colors (list &quot;black&quot; &quot;red&quot; &quot;gray&quot;)))</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="Varyfying-preconditions"><a href="#Varyfying-preconditions" class="headerlink" title="Varyfying preconditions"></a>Varyfying preconditions</h1><ul>
+<li><p>huscks kernels</p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> northernmost-latitude
+  (<span class="name"><span class="builtin-name">lambda</span></span> (cities)
+    (<span class="name"><span class="builtin-name">when</span></span> (<span class="name"><span class="builtin-name">or</span></span> (<span class="name"><span class="builtin-name">not</span></span> (<span class="name"><span class="builtin-name">list?</span></span> cities))
+              (<span class="name"><span class="builtin-name">null?</span></span> cities)
+              (<span class="name"><span class="builtin-name">not</span></span> (<span class="name">all-cities?</span> cities)))
+      (<span class="name">error</span> <span class="string">"northernmost-latitude: expects a non-empty list of cities, given "</span>
+             cities))
+    (<span class="name">northernmost-latitude-kernel</span> cities)))
+
+(<span class="name"><span class="builtin-name">define</span></span> northernmost-latitude-kernel
+  (<span class="name"><span class="builtin-name">lambda</span></span> (cities)
+    (<span class="name">reduce</span> max (<span class="name"><span class="builtin-name">map</span></span> cadr cities))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Recursion</span><br><span class="line"></span><br><span class="line">- cons recursion</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    ; format</span><br><span class="line">    (define recursive-proc</span><br><span class="line">      (lambda (val)</span><br><span class="line">        (if (base-case-check? val)</span><br><span class="line">            (base-case-computation val)</span><br><span class="line">            (combine (partof val)</span><br><span class="line">                     (recursive-proc (simplify val))))))</span><br><span class="line">    ; example</span><br><span class="line">    (define sum</span><br><span class="line">      (lambda (numbers)</span><br><span class="line">        (if (null? numbers)</span><br><span class="line">            0</span><br><span class="line">            (+ (car numbers) (sum (cdr numbers))))))</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Boolean recursion</p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> all-numbers?
+  (<span class="name"><span class="builtin-name">lambda</span></span> (values)
+    (<span class="name"><span class="builtin-name">or</span></span> (<span class="name"><span class="builtin-name">null?</span></span> values)
+        (<span class="name"><span class="builtin-name">and</span></span> (<span class="name"><span class="builtin-name">number?</span></span> (<span class="name"><span class="builtin-name">car</span></span> values))
+             (<span class="name">all-numbers?</span> (<span class="name"><span class="builtin-name">cdr</span></span> values))))))
+
+(<span class="name"><span class="builtin-name">define</span></span> any-numbers?
+  (<span class="name"><span class="builtin-name">lambda</span></span> (values)
+    (<span class="name"><span class="builtin-name">and</span></span> (<span class="name"><span class="builtin-name">not</span></span> (<span class="name"><span class="builtin-name">null?</span></span> values))
+         (<span class="name"><span class="builtin-name">or</span></span> (<span class="name"><span class="builtin-name">number?</span></span> (<span class="name"><span class="builtin-name">car</span></span> values))
+             (<span class="name">any-numbers?</span> (<span class="name"><span class="builtin-name">cdr</span></span> values))))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- helper recursion</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    ; format</span><br><span class="line">    (define proc</span><br><span class="line">      (lambda (lst)</span><br><span class="line">        (proc-helper initial-value lst)))</span><br><span class="line">    (define proc-helper</span><br><span class="line">      (lambda (so-far remaining)</span><br><span class="line">        (if (null? remaining)</span><br><span class="line">            so-far</span><br><span class="line">            (proc-helper (combine so-far (car remaining))</span><br><span class="line">                         (cdr remaining)))))</span><br><span class="line">    ; example</span><br><span class="line">    (define new-sum</span><br><span class="line">      (lambda (numbers)</span><br><span class="line">        (new-sum-helper 0 numbers)))</span><br><span class="line">    </span><br><span class="line">    (define new-sum-helper</span><br><span class="line">      (lambda (sum-so-far remaining)</span><br><span class="line">         (if (null? remaining)</span><br><span class="line">             sum-so-far</span><br><span class="line">             (new-sum-helper (+ sum-so-far (car remaining))</span><br><span class="line">                             (cdr remaining)))))</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>List recursion</p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> recursive-proc
+  (<span class="name"><span class="builtin-name">lambda</span></span> (lst)
+    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> lst)
+        (<span class="name">base-case</span>)
+        (<span class="name">combine</span> (<span class="name"><span class="builtin-name">car</span></span> lst)
+                 (<span class="name">recursive-proc</span> (<span class="name"><span class="builtin-name">cdr</span></span> lst))))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Numerical recursion</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (define recursive-proc</span><br><span class="line">      (lambda (val)</span><br><span class="line">        (if (base-case-check)</span><br><span class="line">            (base-case val)</span><br><span class="line">            (combine (partof val)</span><br><span class="line">                     (recursive-proc (simplify val))))))</span><br><span class="line">    (define recursive-proc</span><br><span class="line">      (lambda (val)</span><br><span class="line">        (if (zero? val)</span><br><span class="line">            (base-case)</span><br><span class="line">            (combine val (recursive-proc (- val 1))))))</span><br><span class="line">    ; example</span><br><span class="line">    (define factorial</span><br><span class="line">      (lambda (n)</span><br><span class="line">        (if (&#x3D; n 1)</span><br><span class="line">            1</span><br><span class="line">            (* n (factorial (- n 1))))))</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Local-Recursive-Procedures"><a href="#Local-Recursive-Procedures" class="headerlink" title="Local Recursive Procedures"></a>Local Recursive Procedures</h1><ul>
+<li><p><code>letrec</code>: local recursive binding procedure </p>
+<ul>
+<li><pre><code class="scheme">&gt; (letrec ([largest (lambda (lst)
+                         (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">null?</span></span> (<span class="name"><span class="builtin-name">cdr</span></span> lst))
+                             (<span class="name"><span class="builtin-name">car</span></span> lst)
+                             (max (car lst) (largest (cdr lst)))))])
+    (largest (list 2 1 4 -5 6 13 3)))
+<span class="number">13</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Husk-and-kernel</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (define list-index</span><br><span class="line">      (lambda (stuff sought)</span><br><span class="line">        (letrec ([kernel (lambda (rest sought bypassed)</span><br><span class="line">                           (cond </span><br><span class="line">                             [(null? rest) </span><br><span class="line">                              #f]                             </span><br><span class="line">                             [(equal? (car rest) sought) </span><br><span class="line">                              bypassed]</span><br><span class="line">                             [else </span><br><span class="line">                              (kernel (cdr rest) sought (+ bypassed 1))]))])</span><br><span class="line">          (kernel stuff sought 0))))</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>multiple local procedures</p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> multi-rec
+    (<span class="name"><span class="builtin-name">letrec</span></span> (<span class="comment">;multiple rec procedures</span>
+        [<span class="name">rec1</span> ()]
+        [<span class="name">rec2</span> ()]
+        )
+            (<span class="name"><span class="builtin-name">lambda</span></span> (paras)
+                body)
+        ))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- named let</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    ; structure</span><br><span class="line">    (let name (</span><br><span class="line">    	[param1 val1]</span><br><span class="line">    	[param2 val2]</span><br><span class="line">    	))</span><br><span class="line">    	</span><br><span class="line">    ; example</span><br><span class="line">    (define sum</span><br><span class="line">      (lambda (numbers)</span><br><span class="line">        (let kernel ([sum-so-far 0]</span><br><span class="line">                     [remaining numbers])</span><br><span class="line">          (if (null? remaining)</span><br><span class="line">              sum-so-far</span><br><span class="line">              (kernel (+ sum-so-far (car remaining))</span><br><span class="line">                      (cdr remaining))))))</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Austin Yu</span>
+                    </p>
+                
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/notes/"># notes</a>
+                    
+                        <a href="/tags/grinnell/"># grinnell</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/03/08/2019photo2019_1/">2019 一月的摄影碎片</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Austin Yu | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

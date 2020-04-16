@@ -282,7 +282,7 @@
   (<span class="name"><span class="builtin-name">lambda</span></span> (numbers)
     (<span class="name"><span class="builtin-name">/</span></span> (<span class="name">reduce</span> + numbers)
        (<span class="name"><span class="builtin-name">length</span></span> numbers))))
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Documentation</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;scheme</span><br><span class="line">;;; Procedure:</span><br><span class="line">;;;   square</span><br><span class="line">;;; Parameters:</span><br><span class="line">;;;   val, an integer</span><br><span class="line">;;; Purpose:</span><br><span class="line">;;;   Computes the square of val.</span><br><span class="line">;;; Produces:</span><br><span class="line">;;;;  result, an integer</span><br><span class="line">;;; Preconditions:</span><br><span class="line">;;;   [No additional]</span><br><span class="line">;;; Postconditions:</span><br><span class="line">;;;   (sqrt result) is val</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Documentation</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;scheme</span><br><span class="line">;;; Procedure:</span><br><span class="line">;;;   </span><br><span class="line">;;; Parameters:</span><br><span class="line">;;;   val, an </span><br><span class="line">;;; Purpose:</span><br><span class="line">;;;   </span><br><span class="line">;;; Produces:</span><br><span class="line">;;;;  result, an </span><br><span class="line">;;; Preconditions:</span><br><span class="line">;;;   </span><br><span class="line">;;; Postconditions:</span><br><span class="line">;;;</span><br></pre></td></tr></table></figure>
 </code></pre>
 </li>
 </ul>
@@ -554,6 +554,225 @@
 </ul>
 </li>
 </ul>
+<h1 id="Random-Simulation"><a href="#Random-Simulation" class="headerlink" title="Random Simulation"></a>Random Simulation</h1><ul>
+<li><p><code>random</code></p>
+<ul>
+<li><pre><code class="scheme">&gt; (random 10)
+<span class="number">1</span>
+&gt; (random 10)
+<span class="number">9</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Pairs</span><br><span class="line"></span><br><span class="line">- LIst: anything recursively cdr ed producing a &#96;null&#96;</span><br><span class="line"></span><br><span class="line">- Pair: anything made from (cons A B)</span><br><span class="line"></span><br><span class="line">- e.g</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (define sum-of-number-tree</span><br><span class="line">      (lambda (ntree)</span><br><span class="line">        (if (pair? ntree)</span><br><span class="line">            (+ (sum-of-number-tree (car ntree))</span><br><span class="line">               (sum-of-number-tree (cdr ntree)))</span><br><span class="line">            ntree)))</span><br><span class="line">            </span><br><span class="line">    &gt; (sum-of-number-tree (cons (cons (cons 0 1)</span><br><span class="line">                                      (cons 2 3))</span><br><span class="line">                                (cons (cons 4 5)</span><br><span class="line">                                      (cons 6 7))))</span><br><span class="line">    28</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h1><ul>
+<li><p>Constructor</p>
+<ul>
+<li><pre><code class="scheme">&gt; (vector "alpha" "beta" "gamma")
+'#("alpha" "beta" "gamma")
+<span class="symbol">'&gt;</span> (<span class="name"><span class="builtin-name">vector</span></span>)  <span class="comment">; the empty vector -- no elements!</span>
+#()
+
+&gt; (make-vector 4 0)
+'#(0 0 0 0)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- Condition</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (vector? (vector &quot;alpha&quot; &quot;beta&quot; &quot;gamma&quot;))</span><br><span class="line">    #t</span><br><span class="line">    &gt; (vector? (list &quot;alpha&quot; &quot;beta&quot; &quot;gamma&quot;))  ; a list, not a vector</span><br><span class="line">    #f</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>methods</p>
+<ul>
+<li><pre><code class="scheme">&gt; (vector-length (vector 3 1 4 1 5 9))
+<span class="number">6</span>
+
+&gt; (vector-ref (vector "alpha" "beta" "gamma") 0)
+alpha
+
+<span class="comment">; vector-set!</span>
+&gt; (define sample-vector (vector "alpha" "beta" "gamma" "delta" "epsilon"))
+&gt; sample-vector 
+'#("alpha" "beta" "gamma" "delta" "epsilon")
+&gt; (vector-set! sample-vector 2 "zeta")
+&gt; sample-vector  ; same vector, now with changed contents
+'#("alpha" "beta" "zeta" "delta" "epsilon")
+
+<span class="comment">; vector-fill!</span>
+&gt; (define sample-vector (vector "rho" "sigma" "tau" "upsilon"))
+&gt; sample-vector  ; original vector
+'#("rho" "sigma" "tau" "upsilon")
+&gt; (vector-fill! sample-vector "kappa")
+&gt; sample-vector  ; same vector, now with changed contents
+'#("kappa" "kappa" "kappa" "kappa")
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- conversion</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (vector-&gt;list (vector 31 27 16))</span><br><span class="line">    &#39;(31 27 16)</span><br><span class="line">    &gt; (vector-&gt;list (vector))</span><br><span class="line">    &#39;()</span><br><span class="line">    &gt; (list-&gt;vector (list #\a #\b #\c))</span><br><span class="line">    &#39;#(#\a #\b #\c)</span><br><span class="line">    &gt; (list-&gt;vector (list 31 27 16))</span><br><span class="line">    &#39;#(31 27 16)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>paradigms </p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> vector-proc
+  (<span class="name"><span class="builtin-name">lambda</span></span> (vec other)
+    (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">len</span> (<span class="name"><span class="builtin-name">vector-length</span></span> vec)])
+      (<span class="name"><span class="builtin-name">let</span></span> kernel ([<span class="name">pos</span> <span class="number">0</span>])
+        (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> pos len)
+            (<span class="name">base-case</span> vec other)
+            (<span class="name">combine</span> (<span class="name"><span class="builtin-name">vector-ref</span></span> vec pos)
+                     (<span class="name">kernel</span> (<span class="name"><span class="builtin-name">+</span></span> pos <span class="number">1</span>))))))))
+
+(<span class="name"><span class="builtin-name">define</span></span> vector-proc
+  (<span class="name"><span class="builtin-name">lambda</span></span> (vec other)
+    (<span class="name"><span class="builtin-name">let</span></span> kernel ([<span class="name">pos</span> (<span class="name"><span class="builtin-name">-</span></span> (<span class="name"><span class="builtin-name">vector-length</span></span> vec) <span class="number">1</span>)])
+      (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> pos <span class="number">0</span>)
+          (<span class="name">base-case</span> vec other)
+          (<span class="name">combine</span> (<span class="name"><span class="builtin-name">vector-ref</span></span> vec pos)
+                   (<span class="name">kernel</span> (<span class="name"><span class="builtin-name">-</span></span> pos <span class="number">1</span>)))))))
+
+(<span class="name"><span class="builtin-name">define</span></span> vector-proc
+  (<span class="name"><span class="builtin-name">lambda</span></span> (vec other)
+    (<span class="name"><span class="builtin-name">let</span></span> ([<span class="name">len</span> (<span class="name"><span class="builtin-name">vector-length</span></span> vec)])
+      (<span class="name"><span class="builtin-name">let</span></span> kernel! ([<span class="name">pos</span> <span class="number">0</span>])
+        (<span class="name"><span class="builtin-name">cond</span></span>
+          [(<span class="name"><span class="builtin-name">=</span></span> pos len)
+           (<span class="name">base-case!</span> vec other)
+           ...]
+          [<span class="name"><span class="builtin-name">else</span></span>
+           (<span class="name">operation!</span> vec pos)
+           ...
+           (<span class="name">kernel!</span> (<span class="name"><span class="builtin-name">+</span></span> pos <span class="number">1</span>))])))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- summary</span><br><span class="line"></span><br><span class="line">  &gt; &#96;(list-&gt;vector lst)&#96;</span><br><span class="line">  &gt; Convert a list to a vector.</span><br><span class="line">  &gt;</span><br><span class="line">  &gt; &#96;(vector val_1 ... val_n)&#96;</span><br><span class="line">  &gt; Create a vector with the given elements.</span><br><span class="line">  &gt;</span><br><span class="line">  &gt; &#96;(vector? val)&#96;</span><br><span class="line">  &gt; Determine if val is a vector.</span><br><span class="line">  &gt;</span><br><span class="line">  &gt; &#96;(vector-fill! vec val)&#96;</span><br><span class="line">  &gt; Fill vec with multiple copies of val.</span><br><span class="line">  &gt;</span><br><span class="line">  &gt; &#96;(vector-ref vec pos)&#96;</span><br><span class="line">  &gt; Extract an element from vec.</span><br><span class="line">  &gt;</span><br><span class="line">  &gt; &#96;(vector-set! vec pos val)&#96;</span><br><span class="line">  &gt; Set element pos of vec to val.</span><br><span class="line">  &gt;</span><br><span class="line">  &gt; &#96;(vector-&gt;list vec)&#96;</span><br><span class="line">  &gt; Convert a vector to a list.</span><br><span class="line"></span><br><span class="line"># File</span><br><span class="line"></span><br><span class="line">- Open port</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (define source</span><br><span class="line">      (open-input-file &quot;_____&quot;))</span><br><span class="line">      </span><br><span class="line">    (let ((source (open-input-file &quot;_____&quot;)))</span><br><span class="line">      ...)</span><br><span class="line">      </span><br><span class="line">    (define helper</span><br><span class="line">      (lambda (source)</span><br><span class="line">         ...))</span><br><span class="line">      ...</span><br><span class="line">      (helper (open-input-file &quot;_____&quot;))</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Read file</p>
+<ul>
+<li><p>Read-char vs peak-char</p>
+<ul>
+<li><pre><code class="scheme">&gt; (define source
+    (open-input-file "/home/rebelsky/glimmer/samples/hi.txt"))
+&gt; (read-char source)
+#\H
+&gt; (peek-char source)
+#\i
+&gt; (peek-char source)
+#\i
+&gt; (read-char source)
+#\i
+&gt; (read-char source)
+#\space
+&gt; (close-input-port source)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;# &lt;eof&gt;&#96; object: finding the end of the file</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    (define read-line-of-chars</span><br><span class="line">      (lambda (source)</span><br><span class="line">        ; If we&#39;re at the end of the line or the end of the file,</span><br><span class="line">        ; then there are no more characters, so return the empty list.</span><br><span class="line">        (cond</span><br><span class="line">          ; If we&#39;re at the end of the file, there are no more characters,</span><br><span class="line">          ; so return the empty list.</span><br><span class="line">          [(eof-object? (peek-char source)) </span><br><span class="line">           null]</span><br><span class="line">          ; If we&#39;re at the end of the line, we&#39;re done with the line</span><br><span class="line">          ; skip over the end-of-line character and return the empty list.</span><br><span class="line">          [(char&#x3D;? (peek-char source) #\newline) </span><br><span class="line">           (read-char source) </span><br><span class="line">           null]</span><br><span class="line">          ; Otherwise, read the current character, read the remaining</span><br><span class="line">          ; characters, and join them together.</span><br><span class="line">          [else </span><br><span class="line">           (cons (read-char source) (read-line-of-chars source))])))</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>read from strings</p>
+<ul>
+<li><pre><code class="scheme">&gt; (define sample (open-input-string "Lion won\nline two\nThird line"))
+&gt; (peek-char sample)
+#\L
+&gt; (read-line-of-chars sample)
+'(<span class="literal">#\L</span> <span class="literal">#\i</span> <span class="literal">#\o</span> <span class="literal">#\n</span> <span class="literal">#\space</span> <span class="literal">#\w</span> <span class="literal">#\o</span> <span class="literal">#\n</span>)
+&gt; (peek-char sample)
+#\l
+&gt; (read-line-of-chars sample)
+'(<span class="literal">#\l</span> <span class="literal">#\i</span> <span class="literal">#\n</span> <span class="literal">#\e</span> <span class="literal">#\space</span> <span class="literal">#\t</span> <span class="literal">#\w</span> <span class="literal">#\o</span>)
+&gt; (peek-char sample)
+#\T
+&gt; (read-line-of-chars sample)
+'(<span class="literal">#\T</span> <span class="literal">#\h</span> <span class="literal">#\i</span> <span class="literal">#\r</span> <span class="literal">#\d</span> <span class="literal">#\space</span> <span class="literal">#\l</span> <span class="literal">#\i</span> <span class="literal">#\n</span> <span class="literal">#\e</span>)
+&gt; (peek-char sample)
+#&lt;eof&gt;
+&gt; (close-input-port sample)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- read vs read-char</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;scheme</span><br><span class="line">    &gt; (define source</span><br><span class="line">        (open-input-string &quot;23512 11 13&quot;))</span><br><span class="line">    &gt; (read source)</span><br><span class="line">    23512</span><br><span class="line">    &gt; (read source)</span><br><span class="line">    11</span><br><span class="line">    &gt; (read source)</span><br><span class="line">    13</span><br><span class="line">    &gt; (read source)</span><br><span class="line">    #&lt;eof&gt;</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Writing Data</p>
+<ul>
+<li>(write content source)<ul>
+<li>e.g. <code>(write &quot;hello&quot; file) (newline file)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Creating new file </p>
+<ul>
+<li><code>(open-output-file file-name)</code></li>
+<li><code>(close-output-file file-name)</code></li>
+</ul>
+</li>
+<li><p>reference</p>
+<blockquote>
+<p><code>(close-input-port input-port)</code><br>Close an open input port.</p>
+<p><code>(close-output-port output-port)</code><br>Close an open output port.</p>
+<p><code>(display value)</code><br>Print a representation of the value on the screen.</p>
+<p><code>(display value output-port)</code><br>Print a representation of the value to the specified port.</p>
+<p><code>(eof-object? value)</code><br>Determine if the given value is something returned by <code>read</code> to indicate the end of the file.</p>
+<p><code>(file-exists? filename)</code><br>Determine whether the specified file exists.</p>
+<p><code>(input-port? value)</code><br>Determine whether the given value is an input port.</p>
+<p><code>(newline)</code><br>Write a newline to the screen.</p>
+<p><code>(newline)</code><br>Write a newline to the screen.</p>
+<p><code>(newline port)</code><br>Write a newline to the specified port.</p>
+<p><code>(open-input-file filename)</code><br>Open the specified file for reading. Returns an input port.</p>
+<p><code>(open-input-string string)</code> Open the specified string for reading. Returns an input port.</p>
+<p><code>(open-output-file filename)</code><br>Open the specified file for writing. Returns an output port.</p>
+<p><code>(output-port? value)</code><br>Determine whether the given value is an output port.</p>
+<p><code>(peek-char input-port)</code><br>Determine the next character available on the specified port.</p>
+<p><code>(read input-port)</code><br>Read the next value available on the specified port.</p>
+<p><code>(read-char input-port)</code><br>Read the next character available on the specified port.</p>
+<p><code>(write value)</code><br>Print the verbose representation of the value on the screen.</p>
+<p><code>(write value output-port)</code><br>Print the verbose representation of the value to the specified port.</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="Binary-Tree"><a href="#Binary-Tree" class="headerlink" title="Binary Tree"></a>Binary Tree</h1><ul>
+<li><p>Paradigm </p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> tree-proc
+  (<span class="name"><span class="builtin-name">lambda</span></span> (tree)
+      (<span class="name"><span class="builtin-name">if</span></span> (<span class="name">empty?</span> tree)
+          (<span class="name">base-case</span> other)
+          (<span class="name">combine</span> (<span class="name">contents</span> tree)
+                   (<span class="name">tree-proc</span> (<span class="name">left</span> tree))
+                   (<span class="name">tree-proc</span> (<span class="name">right</span> tree))))))
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- e.g. </span><br><span class="line"></span><br><span class="line">- &#96;&#96;&#96;scheme</span><br><span class="line">  (define tree-depth</span><br><span class="line">    (lambda (tree)</span><br><span class="line">      (if (empty? tree)</span><br><span class="line">          0</span><br><span class="line">          (+ 1 (max (tree-depth (left tree))</span><br><span class="line">                    (tree-depth (right tree)))))))</span><br><span class="line">                    </span><br><span class="line">  (define tree-size</span><br><span class="line">    (lambda (tree)</span><br><span class="line">      (if (empty? tree)</span><br><span class="line">          0</span><br><span class="line">          (+ 1 </span><br><span class="line">             (tree-size (left tree))</span><br><span class="line">             (tree-size (right tree))))))</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>Implementing Binary Trees</p>
+<ul>
+<li><pre><code class="scheme">(<span class="name"><span class="builtin-name">define</span></span> node
+  (<span class="name"><span class="builtin-name">lambda</span></span> (val l r)
+    (<span class="name"><span class="builtin-name">cons</span></span> val (<span class="name"><span class="builtin-name">cons</span></span> l r))))
+
+(<span class="name"><span class="builtin-name">define</span></span> contents car)
+
+(<span class="name"><span class="builtin-name">define</span></span> left cadr)
+
+(<span class="name"><span class="builtin-name">define</span></span> right cddr)
+
+(<span class="name"><span class="builtin-name">define</span></span> node
+  (<span class="name"><span class="builtin-name">lambda</span></span> (val l r)
+    (<span class="name"><span class="builtin-name">vector</span></span> <span class="symbol">'node</span> val l r)))
+
+(<span class="name"><span class="builtin-name">define</span></span> contents (<span class="name">section</span> vector-ref &lt;&gt; <span class="number">1</span>))
+
+(<span class="name"><span class="builtin-name">define</span></span> left (<span class="name">section</span> vector-ref &lt;&gt; <span class="number">2</span>))
+
+(<span class="name"><span class="builtin-name">define</span></span> right (<span class="name">sectionvector-ref</span> &lt;&gt; <span class="number">3</span>))
+
+(<span class="name"><span class="builtin-name">define</span></span> node?
+  (<span class="name"><span class="builtin-name">lambda</span></span> (val)
+    (<span class="name"><span class="builtin-name">and</span></span> (<span class="name">vector?</span> val)
+         (<span class="name"><span class="builtin-name">=</span></span> (<span class="name"><span class="builtin-name">vector-length</span></span> val) <span class="number">4</span>)
+         (<span class="name"><span class="builtin-name">equal?</span></span> (<span class="name"><span class="builtin-name">vector-ref</span></span> val <span class="number">0</span>) <span class="symbol">'node</span>))))</code></pre>
+</li>
+</ul>
+</li>
+<li><p>​    </p>
+</li>
+</ul>
 
         </div>
 
@@ -598,7 +817,7 @@
         <section class="post-nav">
             
             
-            <a class="next" rel="next" href="/2020/03/08/2019photo2019_1/">2019 一月的摄影碎片</a>
+            <a class="next" rel="next" href="/2020/03/08/2019photo2019_3/">2019 三月的摄影碎片</a>
             
         </section>
 
